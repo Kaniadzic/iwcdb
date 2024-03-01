@@ -1,0 +1,28 @@
+/* resets */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* body & basic display */
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: consolas;
+    font-size: 2rem;
+    padding: 2vh 0 0 0;
+}
+
+.display-none {
+    display: none;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
