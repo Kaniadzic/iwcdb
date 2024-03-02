@@ -1,7 +1,7 @@
 export const DeckBuilder = () => {
     return (
         <div className="flex">
-            DeckBuilder
+            Deck Builder will come soon! 
         </div>
     );
 }
