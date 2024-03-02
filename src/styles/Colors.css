@@ -1,3 +1,4 @@
+/* Colors */
 :root {
     --white: #efefef;
     --black: #090909;
@@ -5,4 +6,6 @@
     --blue: #00c8ff;
     --red: #ff4800;
     --green: #15ff00;
+    --navbar-grey: #494949;
+    --navbar-silver: #eaeaea;
 }
