@@ -16,6 +16,7 @@
  * flavorText: flavor text of card, not used in new IW
  * setName: name of set in which card was introduced
  * setNumber: card number in set in which it war introduced
+ * imageUrl: url to card image
  */
 export interface Card {
     name: string,
@@ -33,5 +34,6 @@ export interface Card {
 	abilityText: string,
     flavorText: string | null,
 	setName: string,
-	setNumber: number
+	setNumber: number,
+	imageUrl: string
 }

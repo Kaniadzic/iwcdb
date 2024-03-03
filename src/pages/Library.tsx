@@ -6,23 +6,24 @@ import { useEffect, useState } from "react";
 import { cardsRef } from "../config/References";
 
 export const Library = () => {
-    const [cardsList, setCardsList] = useState<ICard[]>([]); 
+  const [cardsList, setCardsList] = useState<ICard[]>([]);
 
-    useEffect(() => {
-        console.log("INIT");
-        getCards();
-    }, []);
-
+  useEffect(() => {
     const getCards = async () => {
-        const data = await getDocs(cardsRef);
-        data.docs.forEach((doc) => {
-            console.log(doc.data());
-        })
+      const data = await getDocs(cardsRef);
+      data.docs.forEach((doc) => {
+        setCardsList((prev) => [...prev, doc.data() as ICard]);
+      });
     };
-    
-    return (
-        <div className="flex">
-            librarby
-        </div>
-    );
-}
+
+    getCards();
+  }, []);
+
+  return (
+    <div className="flex column">
+      {cardsList.map((card) => {
+        return <Card cardData={card}/>;
+      })}
+    </div>
+  );
+};
