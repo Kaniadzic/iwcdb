@@ -4,6 +4,7 @@ import { Card as ICard } from "../interfaces/Card";
 import { useEffect, useState } from "react";
 import { cardsRef } from "../config/References";
 import "../styles/Card.css";
+import { CardDisplay } from "../components/CardDisplay";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
@@ -41,43 +42,26 @@ export const Library = () => {
     setIsCardClicked(true);
   };
 
+  const handleCloseDisplayClick = () => {
+    setIsCardClicked(false);
+  };
+
   return (
-    <div className="flex container-library">
-      {cardsList.map((card) => {
-        return <Card cardData={card} clickFunction={handleCardClick} />;
-      })}
-
+    <>
       {isCardClicked && (
-        <div className="flex background-blur">
-          <div className="flex card-display-container">
-            <div className="flex column card-display-left">
-              <img src={clickedCardData?.imageUrl} />
-            </div>
-
-            <div className="flex column">
-              <div className="flex column card-display-right">
-                <p>{clickedCardData?.name}</p>
-                <p>— Rarity: {clickedCardData?.rarity}</p>
-                <p>— Purity: </p>
-                <p>— Health: {clickedCardData?.health} </p>
-                <p>— Attack: {clickedCardData?.attack} </p>
-                <p>— </p>
-                <p>— </p>
-                <p>— </p>
-              </div>
-              <div className="flex column card-display-bottom">
-                <p
-                  onClick={() => {
-                    setIsCardClicked(false);
-                  }}
-                >
-                  Click to close
-                </p>
-              </div>
-            </div>
-          </div>
+        <div className="background-blur">
+          <CardDisplay
+            cardData={clickedCardData}
+            clickFunction={handleCloseDisplayClick}
+          />
         </div>
       )}
-    </div>
+
+      <div className="flex container-library">
+        {cardsList.map((card) => {
+          return <Card cardData={card} clickFunction={handleCardClick} />;
+        })}
+      </div>
+    </>
   );
 };

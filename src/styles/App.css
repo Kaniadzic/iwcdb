@@ -30,21 +30,54 @@ body {
     flex-direction: column;
 }
 
+::selection {
+    background-color: var(--red);
+}
+
+/* RWD */
+@media only screen and (max-width: 520px) {
+    .container-library {
+        width: 100vw !important;
+    }
+
+    .image-card {
+        max-width: 90vw !important;
+    }
+}
+
 /* Library */
 .container-library {
+    position: absolute;
+    top: 64px;
     margin-top: 32px;
     width: 70vw;
     min-height: 100vh;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
+    z-index: 1;
 }
 
 .background-blur {
-    z-index: 1;
-    position: absolute;
-    backdrop-filter: blur(8px);
+    position: fixed;
+    top: 0px;
+    backdrop-filter: blur(10px);
     width: 70vw;
     height: 100vh;
-    overflow: hidden;
+    z-index: 2;
+}
+
+.card-display-top {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.span-close {
+    user-select: none;
+    cursor: pointer;
+}
+
+/* Test */
+.dupa {
+    position: sticky;
 }
