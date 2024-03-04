@@ -7,19 +7,48 @@
 
 /* Styles of single card on click display */
 .card-display-container {
-    width: 50vw;
-    height: 50vh;
-    background: var(--black);
-    z-index: 2;
+    width: 70vw;
+    height: 70vh;
+    /* background: var(--black); */
+    /* border-radius: 16px; */
+    /* box-shadow: 0 0 8px 8px var(--navbar-silver); */
 }
 
 .card-display-left {
+    width: 35%;
+    height: 100%;
+}
+
+.card-display-left > img {
+    box-shadow: 0 0 16px 8px var(--black);
+    min-width: 20vw;
 }
 
 .card-display-right {
     align-items: flex-start;
-    padding: 0 0 0 16px;
+    justify-content: flex-start;
+    width: 65%;
+    height: 90%;
 }
 
-.card-display-bottom {
+.card-display-right > h2 {
+    font-size: 2.5rem;
+    margin: 0 0 16px 0;
 }
+
+.card-display-right > h4 {
+    margin: 0 0 16px 0;
+}
+
+.card-display-top {
+    justify-items: flex-end;
+}
+
+.button-close-display {
+    border: none;
+    background: transparent;
+    color: var(--white);
+    font-size: 2rem;
+    cursor: pointer;
+}
+

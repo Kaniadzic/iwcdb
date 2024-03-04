@@ -30,6 +30,10 @@ body {
     flex-direction: column;
 }
 
+::selection {
+    background-color: var(--red);
+}
+
 /* Library */
 .container-library {
     margin-top: 32px;
@@ -41,10 +45,19 @@ body {
 }
 
 .background-blur {
-    z-index: 1;
     position: absolute;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     width: 70vw;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
+}
+
+.card-display-top {
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.span-close {
+    user-select: none;
+    cursor: pointer;
 }
