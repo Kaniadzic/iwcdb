@@ -4,3 +4,22 @@
     margin: 16px;
     cursor: pointer;
 }
+
+/* Styles of single card on click display */
+.card-display-container {
+    width: 50vw;
+    height: 50vh;
+    background: var(--black);
+    z-index: 2;
+}
+
+.card-display-left {
+}
+
+.card-display-right {
+    align-items: flex-start;
+    padding: 0 0 0 16px;
+}
+
+.card-display-bottom {
+}

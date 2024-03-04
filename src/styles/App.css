@@ -41,8 +41,9 @@ body {
 }
 
 .background-blur {
+    z-index: 1;
     position: absolute;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
     width: 70vw;
     height: 100vh;
     overflow: hidden;

@@ -3,6 +3,7 @@ import { Card } from "../components/Card";
 import { Card as ICard } from "../interfaces/Card";
 import { useEffect, useState } from "react";
 import { cardsRef } from "../config/References";
+import "../styles/Card.css";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
@@ -29,8 +30,12 @@ export const Library = () => {
   /**
    * Updating clicked card data on state update
    */
-  useEffect(() => {}, [clickedCardData])
+  useEffect(() => {}, [clickedCardData]);
 
+  /**
+   * Handling click on single card: displaying blur background & card data
+   * @param cardData
+   */
   const handleCardClick = (cardData: ICard) => {
     setClickedCardData(cardData);
     setIsCardClicked(true);
@@ -43,15 +48,34 @@ export const Library = () => {
       })}
 
       {isCardClicked && (
-        <div className="flex background-blur" onClick={() => {setIsCardClicked(false)} }>
-          <div className="flex column">
+        <div className="flex background-blur">
+          <div className="flex card-display-container">
+            <div className="flex column card-display-left">
+              <img src={clickedCardData?.imageUrl} />
+            </div>
 
+            <div className="flex column">
+              <div className="flex column card-display-right">
+                <p>{clickedCardData?.name}</p>
+                <p>— Rarity: {clickedCardData?.rarity}</p>
+                <p>— Purity: </p>
+                <p>— Health: {clickedCardData?.health} </p>
+                <p>— Attack: {clickedCardData?.attack} </p>
+                <p>— </p>
+                <p>— </p>
+                <p>— </p>
+              </div>
+              <div className="flex column card-display-bottom">
+                <p
+                  onClick={() => {
+                    setIsCardClicked(false);
+                  }}
+                >
+                  Click to close
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="flex column">
-
-          </div>
-          <p>{ clickedCardData?.name }</p>
-          <p>Click anywhere to close</p>
         </div>
       )}
     </div>
