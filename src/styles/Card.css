@@ -1,0 +1,6 @@
+/* Styles of single card in library */
+.image-card {
+    max-width: 20vw;
+    margin: 16px;
+    cursor: pointer;
+}
