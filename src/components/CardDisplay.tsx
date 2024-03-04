@@ -1,4 +1,5 @@
 import { CardDisplayProps } from "../interfaces/CardDisplayProps";
+import { FactionIcons } from "./FactionIcons";
 
 /**
  * 
@@ -16,6 +17,8 @@ const formatSubTypes = (subTypesArray: string[] | null | undefined): string => {
 }
 
 export const CardDisplay = (props: CardDisplayProps) => {
+    console.log(props.cardData);
+
   return (
     <div className="flex card-display-container">
       <div className="flex column card-display-left">
@@ -31,8 +34,10 @@ export const CardDisplay = (props: CardDisplayProps) => {
           {props.cardData?.superType} {props.cardData?.type} -{" "}
           {formatSubTypes(props.cardData?.subTypes)}
         </h4>
+
+        <FactionIcons factionsArray={props.cardData?.purity} />
+
         <p>— Rarity: {props.cardData?.rarity}</p>
-        <p>— Purity: </p>
         <p>— Resource cost: {props.cardData?.resourceCost} </p>
 
         {/* Attack, health morale cost and attributes are displayed only for Character cards */}
