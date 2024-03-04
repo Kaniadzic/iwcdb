@@ -1,5 +1,4 @@
-import { db } from "../config/Config";
-import { getDocs, getDoc } from "firebase/firestore";
+import { getDocs } from "firebase/firestore";
 import { Card } from "../components/Card";
 import { Card as ICard } from "../interfaces/Card";
 import { useEffect, useState } from "react";
@@ -7,7 +6,8 @@ import { cardsRef } from "../config/References";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
-  const [cardClicked, setCardClicked] = useState<boolean>(false);
+  const [isCardClicked, setIsCardClicked] = useState<boolean>(false);
+  const [clickedCardData, setClickedCardData] = useState<ICard | null>(null);
 
   /**
    * loading cards from database
@@ -26,8 +26,14 @@ export const Library = () => {
     getCards();
   }, []);
 
-  const handleCardClick = () => {
-    setCardClicked(true);
+  /**
+   * Updating clicked card data on state update
+   */
+  useEffect(() => {}, [clickedCardData])
+
+  const handleCardClick = (cardData: ICard) => {
+    setClickedCardData(cardData);
+    setIsCardClicked(true);
   };
 
   return (
@@ -36,9 +42,15 @@ export const Library = () => {
         return <Card cardData={card} clickFunction={handleCardClick} />;
       })}
 
-      {cardClicked && (
-        <div className="flex column background-blur" onClick={() => {setCardClicked(false)} }>
-          <p>aaa</p>
+      {isCardClicked && (
+        <div className="flex background-blur" onClick={() => {setIsCardClicked(false)} }>
+          <div className="flex column">
+
+          </div>
+          <div className="flex column">
+
+          </div>
+          <p>{ clickedCardData?.name }</p>
           <p>Click anywhere to close</p>
         </div>
       )}

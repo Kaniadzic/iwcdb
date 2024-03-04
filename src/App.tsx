@@ -10,7 +10,7 @@ import { Error } from './pages/Error';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App flex column">
       <Router>
         <Navbar />
 

@@ -33,7 +33,7 @@ body {
 /* Library */
 .container-library {
     margin-top: 32px;
-    width: 100vw;
+    width: 70vw;
     min-height: 100vh;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -43,8 +43,7 @@ body {
 .background-blur {
     position: absolute;
     backdrop-filter: blur(6px);
-    width: 100vw;
+    width: 70vw;
     height: 100vh;
     overflow: hidden;
-    border: 2px solid red;
 }
