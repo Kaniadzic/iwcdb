@@ -47,16 +47,21 @@ export const Library = () => {
   };
 
   return (
-    <div className="flex container-library">
-      {cardsList.map((card) => {
-        return <Card cardData={card} clickFunction={handleCardClick} />;
-      })}
-
+    <>
       {isCardClicked && (
-        <div className="flex background-blur">
-          <CardDisplay cardData={clickedCardData} clickFunction={handleCloseDisplayClick} />
+        <div className="background-blur">
+          <CardDisplay
+            cardData={clickedCardData}
+            clickFunction={handleCloseDisplayClick}
+          />
         </div>
       )}
-    </div>
+
+      <div className="flex container-library">
+        {cardsList.map((card) => {
+          return <Card cardData={card} clickFunction={handleCardClick} />;
+        })}
+      </div>
+    </>
   );
 };

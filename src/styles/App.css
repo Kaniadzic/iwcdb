@@ -34,22 +34,37 @@ body {
     background-color: var(--red);
 }
 
+/* RWD */
+@media only screen and (max-width: 520px) {
+    .container-library {
+        width: 100vw !important;
+    }
+
+    .image-card {
+        max-width: 90vw !important;
+    }
+}
+
 /* Library */
 .container-library {
+    position: absolute;
+    top: 64px;
     margin-top: 32px;
     width: 70vw;
     min-height: 100vh;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
+    z-index: 1;
 }
 
 .background-blur {
-    position: absolute;
+    position: fixed;
+    top: 0px;
     backdrop-filter: blur(10px);
     width: 70vw;
-    height: 100%;
-    overflow: hidden;
+    height: 100vh;
+    z-index: 2;
 }
 
 .card-display-top {
@@ -60,4 +75,9 @@ body {
 .span-close {
     user-select: none;
     cursor: pointer;
+}
+
+/* Test */
+.dupa {
+    position: sticky;
 }

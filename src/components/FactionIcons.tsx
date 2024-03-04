@@ -1,5 +1,4 @@
 import { FactionIconsProps } from "../interfaces/FactionIconsProps";
-import "../resources/icons/DoD.png";
 
 export const FactionIcons = (props: FactionIconsProps) => {
   return (

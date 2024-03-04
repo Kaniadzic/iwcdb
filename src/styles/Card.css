@@ -1,6 +1,6 @@
 /* Styles of single card in library */
 .image-card {
-    max-width: 20vw;
+    max-width: 290px;
     margin: 16px;
     cursor: pointer;
 }
@@ -8,10 +8,7 @@
 /* Styles of single card on click display */
 .card-display-container {
     width: 70vw;
-    height: 70vh;
-    /* background: var(--black); */
-    /* border-radius: 16px; */
-    /* box-shadow: 0 0 8px 8px var(--navbar-silver); */
+    height: 100vh;
 }
 
 .card-display-left {
@@ -26,7 +23,7 @@
 
 .card-display-right {
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     width: 65%;
     height: 90%;
 }
