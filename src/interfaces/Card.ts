@@ -1,5 +1,6 @@
 /**
  * Interface describing single card from game
+ * id: id of card in Firebase database
  * name: name of card
  * artist: name and surname of card art creator
  * purity: purity requirement of card. Described as array of purity IDs
@@ -16,8 +17,10 @@
  * flavorText: flavor text of card, not used in new IW
  * setName: name of set in which card was introduced
  * setNumber: card number in set in which it war introduced
+ * imageUrl: url to card image
  */
 export interface Card {
+	id: string
     name: string,
 	artist: string,
 	purity: number[] | null,
@@ -33,5 +36,6 @@ export interface Card {
 	abilityText: string,
     flavorText: string | null,
 	setName: string,
-	setNumber: number
+	setNumber: number,
+	imageUrl: string
 }

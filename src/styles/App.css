@@ -1,0 +1,50 @@
+/* resets */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@400;700&family=Ubuntu:wght@300;400;700&display=swap');
+
+/* body & basic display */
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: consolas;
+    font-size: 2rem;
+    padding: 2vh 0 0 0;
+}
+
+.display-none {
+    display: none;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+/* Library */
+.container-library {
+    margin-top: 32px;
+    width: 70vw;
+    min-height: 100vh;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.background-blur {
+    z-index: 1;
+    position: absolute;
+    backdrop-filter: blur(8px);
+    width: 70vw;
+    height: 100vh;
+    overflow: hidden;
+}
