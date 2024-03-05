@@ -142,8 +142,12 @@ body {
 }
 
 /* Library filters */
-.button-display-filters {
+.wrapper-buttons-display-filters {
     width: 100%;
+}
+
+.button-display-filters {
+    min-width: 512px;
 }
 
 .container-filters {
@@ -297,4 +301,25 @@ body {
     color: var(--navbar-silver);
     background: var(--black);
     border: 0.15em solid var(--navbar-silver);
+}
+
+/* Purity inputs */
+.container-purity {
+    height: 100%;
+    cursor: pointer;
+    margin: 0 3px;
+    padding: 0 2px;
+}
+
+.purity-filter-icon {
+    width: 52px;
+    height: 52px;
+}
+
+.purity-selected {
+    background: linear-gradient(var(--red), var(--pink));
+}
+
+.container-purity > p {
+    position: absolute;
 }
