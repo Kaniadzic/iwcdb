@@ -9,13 +9,13 @@ export const LibraryFilter = () => {
    * @param faction number of faction to change purity
    */
   const handlePurityChange = (faction: number) => {
-      if (purityStates[faction] == -1) {
-        purityStateFunctions[faction](0);
-      } else if (purityStates[faction] >= 0 && purityStates[faction] < 3) {
-        purityStateFunctions[faction](purityStates[faction] + 1);
-      } else {
-        purityStateFunctions[faction](-1);
-      }
+    if (purityStates[faction] == -1) {
+      purityStateFunctions[faction](0);
+    } else if (purityStates[faction] >= 0 && purityStates[faction] < 3) {
+      purityStateFunctions[faction](purityStates[faction] + 1);
+    } else {
+      purityStateFunctions[faction](-1);
+    }
   };
 
   const [flamePurity, setFlamePurity] = useState<number>(-1);
@@ -35,7 +35,7 @@ export const LibraryFilter = () => {
     genesisPurity,
     sleepersPurity,
     exilesPurity,
-    solacePurity
+    solacePurity,
   ];
 
   const purityStateFunctions = [
@@ -46,8 +46,18 @@ export const LibraryFilter = () => {
     setGenesisPurity,
     setSleepersPurity,
     setExilesPurity,
-    setSolacePurity
+    setSolacePurity,
   ];
+
+  /**
+   * Reseting form controls & purity selection
+   */
+  const resetForm = () => {
+    reset();
+    purityStateFunctions.forEach((purity) => {
+      purity(-1);
+    })
+  };
 
   /**
    * Filter form validation schema
@@ -113,7 +123,7 @@ export const LibraryFilter = () => {
     superType: yup.string().required().oneOf(["All", "Unique", "Unlimited"]),
   });
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(filterSchema),
   });
 
@@ -209,10 +219,7 @@ export const LibraryFilter = () => {
             <div className="flex column category-filter">
               <p>Purity</p>
               <div className="flex row-filter">
-
-
-
-              <div
+                <div
                   className={
                     flamePurity > -1
                       ? "flex container-purity purity-selected"
@@ -267,7 +274,10 @@ export const LibraryFilter = () => {
                     handlePurityChange(3);
                   }}
                 >
-                  <img src="/icons/Warpath.png" className="purity-filter-icon" />
+                  <img
+                    src="/icons/Warpath.png"
+                    className="purity-filter-icon"
+                  />
                   <p>{warpathPurity > 0 ? warpathPurity : ""}</p>
                   <input type="hidden" />
                 </div>
@@ -282,7 +292,10 @@ export const LibraryFilter = () => {
                     handlePurityChange(4);
                   }}
                 >
-                  <img src="/icons/Genesis.png" className="purity-filter-icon" />
+                  <img
+                    src="/icons/Genesis.png"
+                    className="purity-filter-icon"
+                  />
                   <p>{genesisPurity > 0 ? genesisPurity : ""}</p>
                   <input type="hidden" />
                 </div>
@@ -297,7 +310,10 @@ export const LibraryFilter = () => {
                     handlePurityChange(5);
                   }}
                 >
-                  <img src="/icons/Sleepers.png" className="purity-filter-icon" />
+                  <img
+                    src="/icons/Sleepers.png"
+                    className="purity-filter-icon"
+                  />
                   <p>{sleepersPurity > 0 ? sleepersPurity : ""}</p>
                   <input type="hidden" />
                 </div>
@@ -331,7 +347,6 @@ export const LibraryFilter = () => {
                   <p>{solacePurity > 0 ? solacePurity : ""}</p>
                   <input type="hidden" />
                 </div>
-
               </div>
             </div>
           </div>
@@ -705,9 +720,14 @@ export const LibraryFilter = () => {
           </div>
         </form>
 
-        <button className="button-main" onClick={handleSubmit(onCardsFilter)}>
-          Apply Filter
-        </button>
+        <div className="flex">
+          <button className="button-main" onClick={() => { resetForm() }}>
+            Clear
+          </button>
+          <button className="button-main" onClick={handleSubmit(onCardsFilter)}>
+            Apply Filter
+          </button>
+        </div>
       </div>
     </>
   );
