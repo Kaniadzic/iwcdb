@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useState } from "react";
 
 export const LibraryFilter = () => {
   /**
@@ -71,6 +72,8 @@ export const LibraryFilter = () => {
     register, handleSubmit
   } = useForm({ resolver: yupResolver(filterSchema) });
 
+  const [displayFilter, setDisplayFilter] = useState<boolean>(false);
+
   /**
    * Handling form submit
    */
@@ -79,7 +82,14 @@ export const LibraryFilter = () => {
   };
 
   return (
-    <div className="flex column container-filters">
+    <>
+    <div className="flex button-display-filters">
+      <button className="button-main" onClick={() => { setDisplayFilter(!displayFilter) }}>
+        {displayFilter ? "Hide filters" : "Show filters"}
+      </button>
+    </div>
+
+    <div className={displayFilter ? "flex column container-filters" : "display-none"}>
       <form className="flex column">
 
         {/* Resource Cost & Purity */}
@@ -168,7 +178,7 @@ export const LibraryFilter = () => {
           {/* SuperType */}
           <div className="flex column category-filter">
             <p>SuperType</p>
-            <div className="flex row-filter">
+            <div className="flex select-row-filter">
               <select {...register('superType')} className="select-input">
                 <option value="All">All</option>
                 <option value="Unique">Unique</option>
@@ -275,5 +285,7 @@ export const LibraryFilter = () => {
 
       <button className="button-main" onClick={handleSubmit(onCardsFilter)}>Apply Filter</button>
     </div>
+
+    </>
   );
 };

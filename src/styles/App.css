@@ -107,6 +107,11 @@ body {
     cursor: pointer;
 }
 
+.text-cards-quantity {
+    width: 100%;
+    text-align: center;
+}
+
 /* Loading cards alert */
 .container-loading-cards {
     margin: 30vh 0 0 0;
@@ -137,6 +142,10 @@ body {
 }
 
 /* Library filters */
+.button-display-filters {
+    width: 100%;
+}
+
 .container-filters {
     width: 100%;
     min-height: 256px;
@@ -146,6 +155,14 @@ body {
 .column-filter {
     background: linear-gradient(var(--navbar-grey), var(--navbar-silver));
     padding: 0 8px;
+}
+
+.select-row-filter {
+    padding: 0 8px;
+    min-width: 500px;
+    height: 64px;
+    margin: 8px;
+    justify-content: flex-start;
 }
 
 .row-filter {
@@ -272,10 +289,12 @@ body {
 
 .select-input {
     border: none;
-    width: 212px;
-    height: 44px;
+    width: 256px;
+    height: 100%;
     font: inherit;
     background: transparent;
     cursor: pointer;
-    border: 0.15em solid var(--black);
+    color: var(--navbar-silver);
+    background: var(--black);
+    border: 0.15em solid var(--navbar-silver);
 }
