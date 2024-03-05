@@ -1,4 +1,8 @@
 /* Navbar */
+.container-navbar {
+    width:  70vw;
+}
+
 .link-main {
     text-decoration: none;
     color: var(--black);
@@ -7,6 +11,8 @@
     font-style: normal;
     margin: 0 16px;
     padding: 12px 32px 2px 32px;
+    cursor: pointer;
+    user-select: none;
     text-align: center;
     text-shadow: 0 0 2px var(--navbar-silver);
     background: linear-gradient(var(--navbar-grey), var(--navbar-silver));

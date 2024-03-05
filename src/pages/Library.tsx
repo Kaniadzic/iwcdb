@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { cardsRef } from "../config/References";
 import "../styles/Card.css";
 import { CardDisplay } from "../components/CardDisplay";
+import { LoadingIcon } from "../components/LoadingIcon";
+import { LibraryFilter } from "../components/LibraryFilter";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
@@ -28,6 +30,15 @@ export const Library = () => {
     getCards();
   }, []);
 
+  const testFilter = () => {
+    console.log("filter");
+    const filteredCards = cardsList.filter((card) => {
+      return card.attack != null && card?.attack >= 8;
+    });
+
+    setCardsList(filteredCards);
+  };
+
   /**
    * Updating clicked card data on state update
    */
@@ -35,13 +46,16 @@ export const Library = () => {
 
   /**
    * Handling click on single card: displaying blur background & card data
-   * @param cardData
+   * @param cardData Data of card to display
    */
   const handleCardClick = (cardData: ICard) => {
     setClickedCardData(cardData);
     setIsCardClicked(true);
   };
 
+  /**
+   * Handling click on close display button
+   */
   const handleCloseDisplayClick = () => {
     setIsCardClicked(false);
   };
@@ -57,10 +71,19 @@ export const Library = () => {
         </div>
       )}
 
-      <div className="flex container-library">
-        {cardsList.map((card) => {
-          return <Card cardData={card} clickFunction={handleCardClick} />;
-        })}
+      <div className="flex column container-library">
+        {/* Filters */}
+        <LibraryFilter />
+
+        {/* Displaying icon on loading */}
+        {cardsList.length == 0 && <LoadingIcon />}
+
+        {/* Cards Library */}
+        <div className="flex display-cards">
+          {cardsList.map((card) => {
+            return <Card cardData={card} clickFunction={handleCardClick} />;
+          })}
+        </div>
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import "../styles/Navbar.css";
 
 export const Navbar = () => {
     return (
-        <div className="flex">
+        <div className="flex container-navbar">
             <Link to="/" className="link-main"> Library </Link>
             <Link to="/deckbuilder" className="link-main"> Deck Builder </Link>
             <Link to="/glossary" className="link-main"> Glossary </Link>

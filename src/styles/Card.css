@@ -31,10 +31,16 @@
 .card-display-right > h2 {
     font-size: 2.5rem;
     margin: 0 0 16px 0;
+    text-shadow: 0 0 8px var(--black);
 }
 
 .card-display-right > h4 {
     margin: 0 0 16px 0;
+    text-shadow: 0 0 8px var(--black);
+}
+
+.card-display-right > p {
+    text-shadow: 0 0 4px var(--black);
 }
 
 .card-display-top {
