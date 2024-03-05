@@ -58,6 +58,13 @@ export const Library = () => {
       )}
 
       <div className="flex container-library">
+        {cardsList.length == 0 && (
+          <div className="flex column container-loading-cards">
+            <img src="/icons/IW_Logo.png" className="flex icon-loading" />
+            <p>Loading cards...</p>
+          </div>
+        )}
+
         {cardsList.map((card) => {
           return <Card cardData={card} clickFunction={handleCardClick} />;
         })}

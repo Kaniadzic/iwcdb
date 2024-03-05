@@ -77,7 +77,30 @@ body {
     cursor: pointer;
 }
 
-/* Test */
-.dupa {
-    position: sticky;
+/* Loading cards alert */
+.container-loading-cards {
+    margin: 30vh 0 0 0;
+    width: 100%;
+    min-height: 128px;
+}
+
+.container-loading-cards > p {
+    margin: 22px 0 0 0;
+}
+
+.icon-loading {
+    width: 128px;
+    height:128px;
+    animation: animation-loading-icon 5s linear infinite;
+    border-radius: 50%;
+    box-shadow: 0 0 8px 8px var(--navbar-silver);
+}
+
+@keyframes animation-loading-icon {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
 }
