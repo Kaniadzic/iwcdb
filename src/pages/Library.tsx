@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { cardsRef } from "../config/References";
 import "../styles/Card.css";
 import { CardDisplay } from "../components/CardDisplay";
+import { LoadingIcon } from "../components/LoadingIcon";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
@@ -57,17 +58,18 @@ export const Library = () => {
         </div>
       )}
 
-      <div className="flex container-library">
-        {cardsList.length == 0 && (
-          <div className="flex column container-loading-cards">
-            <img src="/icons/IW_Logo.png" className="flex icon-loading" />
-            <p>Loading cards...</p>
-          </div>
-        )}
+      <div className="flex column container-library">
+        {/* Filters */}
+        <div className="flex container-filters">d u p a</div>
 
-        {cardsList.map((card) => {
-          return <Card cardData={card} clickFunction={handleCardClick} />;
-        })}
+        {/* Displaying icon on loading */}
+        {cardsList.length == 0 && <LoadingIcon />}
+
+        <div className="flex display-cards">
+          {cardsList.map((card) => {
+            return <Card cardData={card} clickFunction={handleCardClick} />;
+          })}
+        </div>
       </div>
     </>
   );
