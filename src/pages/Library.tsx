@@ -74,6 +74,7 @@ export const Library = () => {
       <div className="flex column container-library">
         {/* Filters */}
         <LibraryFilter />
+        <p className="text-cards-quantity">Displaying {cardsList.length} cards</p>
 
         {/* Displaying icon on loading */}
         {cardsList.length == 0 && <LoadingIcon />}
