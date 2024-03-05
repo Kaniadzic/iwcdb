@@ -26,6 +26,10 @@ body {
     align-items: center;
 }
 
+.align-start {
+    align-items: flex-start;
+}
+
 .column {
     flex-direction: column;
 }
@@ -138,12 +142,34 @@ body {
     min-height: 256px;
 }
 
-.box-filter {
+.row-filter,
+.column-filter {
     background: linear-gradient(var(--navbar-grey), var(--navbar-silver));
+    padding: 0 8px;
+}
+
+.row-filter {
     min-width: 500px;
     height: 64px;
     margin: 8px;
-    padding: 0 8px;
+}
+
+.column-filter {
+    min-width: 300px;
+    min-height: 300px;
+    margin: 8px;
+    padding: 8px 0;
+}
+
+.column-filter>div {
+    width: 90%;
+    justify-content: flex-start;
+    margin: 4px 0;
+}
+
+.column-filter>div>label {
+    color: var(--black);
+    cursor: pointer;
 }
 
 .category-filter {
@@ -185,7 +211,7 @@ body {
 }
 
 .checkbox-resource-cost::before {
-    content: "0";
+    content: "";
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,4 +268,14 @@ body {
 
 .checkbox-value10::before {
     content: "10+";
+}
+
+.select-input {
+    border: none;
+    width: 212px;
+    height: 44px;
+    font: inherit;
+    background: transparent;
+    cursor: pointer;
+    border: 0.15em solid var(--black);
 }

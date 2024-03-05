@@ -46,6 +46,25 @@ export const LibraryFilter = () => {
     moraleCost7: yup.boolean(),
     moraleCost8: yup.boolean(),
     moraleCost9: yup.boolean(),
+    rarityCommon: yup.boolean(),
+    rarityUncommon: yup.boolean(),
+    rarityRare: yup.boolean(),
+    rarityEpic: yup.boolean(),
+    rarityLegendary: yup.boolean(),
+    typeCharacter: yup.boolean(),
+    typeAbility: yup.boolean(),
+    typeLocation: yup.boolean(),
+    typeArtifact: yup.boolean(),
+    typeMission: yup.boolean(),
+    setCore2013: yup.boolean(),
+    setRise: yup.boolean(),
+    setInfestation: yup.boolean(),
+    setAscension: yup.boolean(),
+    setOrder: yup.boolean(),
+    setOppression: yup.boolean(),
+    setRebellion: yup.boolean(),
+    setIntrigue: yup.boolean(),
+    superType: yup.string().required().oneOf(["All", "Unique", "Unlimited"])
   })
 
   const {
@@ -68,7 +87,7 @@ export const LibraryFilter = () => {
           {/* Resource Cost */}
           <div className="flex column category-filter">
                     <p>Resource Cost</p>
-                    <div className="flex box-filter">
+                    <div className="flex row-filter">
                       <input type="checkbox" {...register('cardCost0')} className="checkbox-value0 checkbox-resource-cost"/>
                       <input type="checkbox" {...register('cardCost1')} className="checkbox-value1 checkbox-resource-cost"/>
                       <input type="checkbox" {...register('cardCost2')} className="checkbox-value2 checkbox-resource-cost"/>
@@ -85,7 +104,7 @@ export const LibraryFilter = () => {
                   {/* Purity */}
                   <div className="flex column category-filter">
                     <p>Purity</p>
-                    <div className="flex box-filter">
+                    <div className="flex row-filter">
                       
                     </div>
                   </div>
@@ -96,7 +115,7 @@ export const LibraryFilter = () => {
           {/* Attack */}
           <div className="flex column category-filter">
             <p>Attack</p>
-            <div className="flex box-filter">
+            <div className="flex row-filter">
               <input type="checkbox" {...register('cardAttack0')} className="checkbox-value0 checkbox-resource-cost"/>
               <input type="checkbox" {...register('cardAttack1')} className="checkbox-value1 checkbox-resource-cost"/>
               <input type="checkbox" {...register('cardAttack2')} className="checkbox-value2 checkbox-resource-cost"/>
@@ -113,7 +132,7 @@ export const LibraryFilter = () => {
           {/* Health */}
           <div className="flex column category-filter">
             <p>Health</p>
-            <div className="flex box-filter">
+            <div className="flex row-filter">
               <input type="checkbox" {...register('cardHealth1')} className="checkbox-value1 checkbox-resource-cost"/>
               <input type="checkbox" {...register('cardHealth2')} className="checkbox-value2 checkbox-resource-cost"/>
               <input type="checkbox" {...register('cardHealth3')} className="checkbox-value3 checkbox-resource-cost"/>
@@ -132,7 +151,7 @@ export const LibraryFilter = () => {
           {/* Morale Cost */}
           <div className="flex column category-filter">
             <p>Morale Cost</p>
-            <div className="flex box-filter">
+            <div className="flex row-filter">
               <input type="checkbox" {...register('moraleCost0')} className="checkbox-value0 checkbox-resource-cost"/>
               <input type="checkbox" {...register('moraleCost1')} className="checkbox-value1 checkbox-resource-cost"/>
               <input type="checkbox" {...register('moraleCost2')} className="checkbox-value2 checkbox-resource-cost"/>
@@ -149,8 +168,106 @@ export const LibraryFilter = () => {
           {/* SuperType */}
           <div className="flex column category-filter">
             <p>SuperType</p>
-            <div className="flex box-filter">
-              
+            <div className="flex row-filter">
+              <select {...register('superType')} className="select-input">
+                <option value="All">All</option>
+                <option value="Unique">Unique</option>
+                <option value="Unlimited">Unlimited</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Rarity, Type, Set */}
+        <div className="flex align-start">
+          {/* Rarity */}
+          <div className="flex column category-filter">
+            <p>Rarity</p>
+            <div className="flex column column-filter">
+              <div className="flex">
+                <input type="checkbox" id="rarityCommon" {...register('rarityCommon')} className="checkbox-resource-cost"/>
+                <label htmlFor="rarityCommon">Common</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="rarityUncommon" {...register('rarityUncommon')} className="checkbox-resource-cost"/>
+                <label htmlFor="rarityUncommon">Uncommon</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="rarityRare" {...register('rarityRare')} className="checkbox-resource-cost"/>
+                <label htmlFor="rarityRare">Rare</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="rarityEpic" {...register('rarityEpic')} className="checkbox-resource-cost"/>
+                <label htmlFor="rarityEpic">Epic</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="rarityLegendary" {...register('rarityLegendary')} className="checkbox-resource-cost"/>
+                <label htmlFor="rarityLegendary">Legendary</label>
+              </div>
+            </div>
+          </div>
+          {/* Type */}
+          <div className="flex column category-filter">
+            <p>Type</p>
+            <div className="flex column column-filter">
+              <div className="flex">
+                <input type="checkbox" id="typeCharacter" {...register('typeCharacter')} className="checkbox-resource-cost"/>
+                <label htmlFor="typeCharacter">Character</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="typeAbility" {...register('typeAbility')} className="checkbox-resource-cost"/>
+                <label htmlFor="typeAbility">Ability</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="typeLocation" {...register('typeLocation')} className="checkbox-resource-cost"/>
+                <label htmlFor="typeLocation">Location</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="typeArtifact" {...register('typeArtifact')} className="checkbox-resource-cost"/>
+                <label htmlFor="typeArtifact">Artifact</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="typeMission" {...register('typeMission')} className="checkbox-resource-cost"/>
+                <label htmlFor="typeMission">Mission</label>
+              </div>
+            </div>
+          </div>
+          {/* Set */}
+          <div className="flex column category-filter">
+            <p>Set</p>
+            <div className="flex column column-filter">
+              <div className="flex">
+                <input type="checkbox" id="setCore2013" {...register('setCore2013')} className="checkbox-resource-cost"/>
+                <label htmlFor="setCore2013">Core 2013</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="setRise" {...register('setRise')} className="checkbox-resource-cost"/>
+                <label htmlFor="setRise">Rise</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="setInfestation" {...register('setInfestation')} className="checkbox-resource-cost"/>
+                <label htmlFor="setInfestation">Infestation</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="setAscension" {...register('setAscension')} className="checkbox-resource-cost"/>
+                <label htmlFor="setAscension">Ascension</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="setOrder" {...register('setOrder')} className="checkbox-resource-cost"/>
+                <label htmlFor="setOrder">Order</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="setOppression" {...register('setOppression')} className="checkbox-resource-cost"/>
+                <label htmlFor="setOppression">Oppression</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="setRebellion" {...register('setRebellion')} className="checkbox-resource-cost"/>
+                <label htmlFor="setRebellion">Rebellion</label>
+              </div>
+              <div className="flex">
+                <input type="checkbox" id="setIntrigue" {...register('setIntrigue')} className="checkbox-resource-cost"/>
+                <label htmlFor="setIntrigue">Intrigue</label>
+              </div>
             </div>
           </div>
         </div>
