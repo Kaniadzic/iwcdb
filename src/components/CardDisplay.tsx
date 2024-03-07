@@ -9,6 +9,9 @@ import { FactionIcons } from "./FactionIcons";
 const formatSubTypes = (subTypesArray: string[] | null | undefined): string => {
     let subtypes = "";
 
+    /**
+     * Formatting subTypes array to string
+     */
     subTypesArray?.forEach((subtype) => {
         subtypes += `${subtype} `;
     });
@@ -17,8 +20,6 @@ const formatSubTypes = (subTypesArray: string[] | null | undefined): string => {
 }
 
 export const CardDisplay = (props: CardDisplayProps) => {
-    console.log(props.cardData);
-
   return (
     <div className="flex card-display-container">
       <div className="flex column card-display-left">

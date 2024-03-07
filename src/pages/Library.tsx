@@ -7,6 +7,7 @@ import "../styles/Card.css";
 import { CardDisplay } from "../components/CardDisplay";
 import { LoadingIcon } from "../components/LoadingIcon";
 import { LibraryFilter } from "../components/LibraryFilter";
+import { CardsFilter } from "../interfaces/CardsFilter";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
@@ -48,8 +49,9 @@ export const Library = () => {
   /**
    * Aplying filter - setting filtered list (which is displayed) to new state with only cards described in filters
    */
-  const filterCardsList = () => {
-    testFilter();
+  const filterCardsList = (filterValues: CardsFilter) => {
+    console.log(filterValues);
+    // testFilter();
   };
 
   /**
