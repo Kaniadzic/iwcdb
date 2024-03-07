@@ -43,17 +43,17 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
    * Filter form validation schema
    */
   const filterSchema = yup.object().shape({
-    cardCost: yup.array(),
-    cardAttack: yup.array(),
-    cardHealth: yup.array(),
-    moraleCost: yup.array(),
-    rarity: yup.array(),
-    type: yup.array(),
-    set: yup.array(),
+    cardCost: yup.mixed().nullable(),
+    cardAttack: yup.mixed().nullable(),
+    cardHealth: yup.mixed().nullable(),
+    moraleCost: yup.mixed().nullable(),
+    rarity: yup.mixed().nullable(),
+    type: yup.mixed().nullable(),
+    set: yup.mixed().nullable(),
     superType: yup.string().required().oneOf(["All", "Unique", "Unlimited"]),
   });
 
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, formState: { errors }  } = useForm({
     resolver: yupResolver(filterSchema),
   });
 
@@ -89,7 +89,6 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
    */
   const onCardsFilter = (data: any) => {
     const filters: CardsFilter = {...data, purity: purityStates}
-
     props.filterFunction(filters);
   };
 
@@ -104,6 +103,10 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
         >
           {displayFilter ? "Hide filters" : "Show filters"}
         </button>
+
+        { Object.values(errors).map((err) => {
+          return <p>{err.message}</p>
+        }) }
       </div>
 
       <div
