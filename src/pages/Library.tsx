@@ -10,6 +10,7 @@ import { LibraryFilter } from "../components/LibraryFilter";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
+  const [filteredCardsList, setFilteredCardsList] = useState<ICard[]>([]);
   const [isCardClicked, setIsCardClicked] = useState<boolean>(false);
   const [clickedCardData, setClickedCardData] = useState<ICard | null>(null);
 
@@ -21,6 +22,11 @@ export const Library = () => {
       const data = await getDocs(cardsRef);
       data.docs.forEach((doc) => {
         setCardsList((prev) => [
+          ...prev,
+          { ...doc.data(), id: doc.id } as ICard,
+        ]);
+
+        setFilteredCardsList((prev) => [
           ...prev,
           { ...doc.data(), id: doc.id } as ICard,
         ]);
@@ -36,7 +42,21 @@ export const Library = () => {
       return card.attack != null && card?.attack >= 8;
     });
 
-    setCardsList(filteredCards);
+    setFilteredCardsList(filteredCards);
+  };
+
+  /**
+   * Aplying filter - setting filtered list (which is displayed) to new state with only cards described in filters
+   */
+  const filterCardsList = () => {
+    testFilter();
+  };
+
+  /**
+   * Clearing filter - setting filtered list (which is displayed to original list from database)
+   */
+  const clearFilter = () => {
+    setFilteredCardsList(cardsList);
   };
 
   /**
@@ -73,15 +93,15 @@ export const Library = () => {
 
       <div className="flex column container-library">
         {/* Filters */}
-        <LibraryFilter />
-        <p className="text-cards-quantity">Displaying {cardsList.length} cards</p>
+        <LibraryFilter filterFunction={filterCardsList} clearFunction={clearFilter}/>
+        <p className="text-cards-quantity">Displaying {filteredCardsList.length} cards</p>
 
         {/* Displaying icon on loading */}
-        {cardsList.length == 0 && <LoadingIcon />}
+        {filteredCardsList.length == 0 && <LoadingIcon />}
 
         {/* Cards Library */}
         <div className="flex display-cards">
-          {cardsList.map((card) => {
+          {filteredCardsList.map((card) => {
             return <Card cardData={card} clickFunction={handleCardClick} />;
           })}
         </div>

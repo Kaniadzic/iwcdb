@@ -2,21 +2,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
+import { LibraryFilterProps } from "../interfaces/LibraryFilterProps";
 
-export const LibraryFilter = () => {
-  /**
-   * Handling change of purity value in filter
-   * @param faction number of faction to change purity
-   */
-  const handlePurityChange = (faction: number) => {
-    if (purityStates[faction] == -1) {
-      purityStateFunctions[faction](0);
-    } else if (purityStates[faction] >= 0 && purityStates[faction] < 3) {
-      purityStateFunctions[faction](purityStates[faction] + 1);
-    } else {
-      purityStateFunctions[faction](-1);
-    }
-  };
+export const LibraryFilter = (props: LibraryFilterProps) => {
+  const [displayFilter, setDisplayFilter] = useState<boolean>(false);
 
   const [flamePurity, setFlamePurity] = useState<number>(-1);
   const [verorePurity, setVerorePurity] = useState<number>(-1);
@@ -48,16 +37,6 @@ export const LibraryFilter = () => {
     setExilesPurity,
     setSolacePurity,
   ];
-
-  /**
-   * Reseting form controls & purity selection
-   */
-  const resetForm = () => {
-    reset();
-    purityStateFunctions.forEach((purity) => {
-      purity(-1);
-    })
-  };
 
   /**
    * Filter form validation schema
@@ -127,14 +106,40 @@ export const LibraryFilter = () => {
     resolver: yupResolver(filterSchema),
   });
 
-  const [displayFilter, setDisplayFilter] = useState<boolean>(false);
+  /**
+   * Handling change of purity value in filter
+   * @param faction number of faction to change purity
+   */
+  const handlePurityChange = (faction: number) => {
+    if (purityStates[faction] == -1) {
+      purityStateFunctions[faction](0);
+    } else if (purityStates[faction] >= 0 && purityStates[faction] < 3) {
+      purityStateFunctions[faction](purityStates[faction] + 1);
+    } else {
+      purityStateFunctions[faction](-1);
+    }
+  };
+
+  /**
+   * Reseting form controls & purity selection
+   */
+  const resetForm = () => {
+    reset();
+
+    purityStateFunctions.forEach((purity) => {
+      purity(-1);
+    });
+
+    props.clearFunction();
+  };
 
   /**
    * Handling form submit
    */
   const onCardsFilter = (data: any) => {
-    // console.log(data);
+    console.log(data);
     console.log(purityStates);
+    props.filterFunction();
   };
 
   return (
@@ -721,7 +726,12 @@ export const LibraryFilter = () => {
         </form>
 
         <div className="flex">
-          <button className="button-main" onClick={() => { resetForm() }}>
+          <button
+            className="button-main"
+            onClick={() => {
+              resetForm();
+            }}
+          >
             Clear
           </button>
           <button className="button-main" onClick={handleSubmit(onCardsFilter)}>
