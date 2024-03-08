@@ -1,10 +1,11 @@
 export interface CardsFilter {
-    attackValues: (number | null)[],
-    healthValues: number[],
-    costValues: number[],
-    moraleValues: number[],
+    attackValues: string[],
+    healthValues: string[],
+    costValues: string[],
+    moraleValues: string[],
     rarities: string[],
     sets: string[],
     types: string[],
-    superType: string
+    superType: string,
+    purity: number[]
 };
