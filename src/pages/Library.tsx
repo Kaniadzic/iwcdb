@@ -37,23 +37,80 @@ export const Library = () => {
     getCards();
   }, []);
 
-  const testFilter = () => {
-    console.log("filter");
-    const filteredCards = cardsList.filter((card) => {
-      return card.attack != null && card?.attack >= 8;
-    });
-
-    setFilteredCardsList(filteredCards);
-  };
-
   /**
    * Aplying filter - setting filtered list (which is displayed) to new state with only cards described in filters
    */
-  const filterCardsList = (filterValues: CardsFilter) => {
+  const filterCardsList = async (filterValues: CardsFilter) => {
     console.log(filterValues);
+    console.log(filteredCardsList);
 
-    
-    // testFilter();
+    // filtering by supertype
+    let result = cardsList.filter((card) => {
+      if (filterValues.superType == "All") {
+        return card;
+      }
+      return card.superType == filterValues.superType;
+    });
+
+    // filtering by type
+    result = result.filter((card) => {
+      if (filterValues.types.length > 0) {
+        if (filterValues.types.includes(card.type)) {
+          return card;
+        }
+      } else {
+        return card;
+      }
+    });
+
+    // filtering by rarity
+    result = result.filter((card) => {
+      if (filterValues.rarities.length > 0) {
+        if (filterValues.rarities.includes(card.rarity)) {
+          return card;
+        }
+      } else {
+        return card;
+      }
+    });
+
+    // filtering by set
+    result = result.filter((card) => {
+      if (filterValues.sets.length > 0) {
+        if (filterValues.sets.includes(card.setName)) {
+          return card;
+        }
+      } else {
+        return card;
+      }
+    });
+
+    // filtering by number values (attack, health, cost, morale)
+    result = result.filter((card) => {
+      if (
+        filterValues.attackValues.length > 0 ||
+        filterValues.healthValues.length > 0 ||
+        filterValues.costValues.length > 0 ||
+        filterValues.moraleValues.length > 0
+      ) {
+        if (filterValues.attackValues.includes(card.attack!.toString())) {
+          return card;
+        }
+        else if (filterValues.healthValues.includes(card.health!.toString())) {
+          return card;
+        }
+        else if (filterValues.moraleValues.includes(card.moraleCost!.toString())) {
+          return card;
+        }
+        else if (filterValues.costValues.includes(card.resourceCost!.toString())) {
+          return card;
+        }
+      } else {
+        return card;
+      }
+    });
+
+    setFilteredCardsList(result);
   };
 
   /**
@@ -66,7 +123,7 @@ export const Library = () => {
   /**
    * Updating clicked card data on state update
    */
-  useEffect(() => {}, [clickedCardData]);
+  useEffect(() => {}, [clickedCardData, filteredCardsList]);
 
   /**
    * Handling click on single card: displaying blur background & card data
@@ -97,11 +154,16 @@ export const Library = () => {
 
       <div className="flex column container-library">
         {/* Filters */}
-        <LibraryFilter filterFunction={filterCardsList} clearFunction={clearFilter}/>
-        <p className="text-cards-quantity">Displaying {filteredCardsList.length} cards</p>
+        <LibraryFilter
+          filterFunction={filterCardsList}
+          clearFunction={clearFilter}
+        />
+        <p className="text-cards-quantity">
+          Displaying {filteredCardsList.length} cards
+        </p>
 
         {/* Displaying icon on loading */}
-        {filteredCardsList.length == 0 && <LoadingIcon />}
+        {cardsList.length == 0 && <LoadingIcon />}
 
         {/* Cards Library */}
         <div className="flex display-cards">

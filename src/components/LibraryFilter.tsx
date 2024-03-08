@@ -17,7 +17,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
   const [exilesPurity, setExilesPurity] = useState<number>(-1);
   const [solacePurity, setSolacePurity] = useState<number>(-1);
 
-  const purityStates = [
+  const purityStates: any[] = [
     flamePurity,
     verorePurity,
     dodPurity,
@@ -43,17 +43,17 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
    * Filter form validation schema
    */
   const filterSchema = yup.object().shape({
-    cardCost: yup.mixed().nullable(),
-    cardAttack: yup.mixed().nullable(),
-    cardHealth: yup.mixed().nullable(),
-    moraleCost: yup.mixed().nullable(),
-    rarity: yup.mixed().nullable(),
-    type: yup.mixed().nullable(),
-    set: yup.mixed().nullable(),
+    costValues: yup.mixed().nullable(),
+    attackValues: yup.mixed().nullable(),
+    healthValues: yup.mixed().nullable(),
+    moraleValues: yup.mixed().nullable(),
+    rarities: yup.mixed().nullable(),
+    types: yup.mixed().nullable(),
+    sets: yup.mixed().nullable(),
     superType: yup.string().required().oneOf(["All", "Unique", "Unlimited"]),
   });
 
-  const { register, handleSubmit, reset, formState: { errors }  } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(filterSchema),
   });
 
@@ -89,8 +89,33 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
    */
   const onCardsFilter = (data: any) => {
     const filters: CardsFilter = {...data, purity: purityStates}
+
+    if (!filters.attackValues) {
+      filters.attackValues = [];
+    }
+    if (!filters.healthValues) {
+      filters.healthValues = [];
+    }
+    if (!filters.moraleValues) {
+      filters.moraleValues = [];
+    }
+    if (!filters.costValues) {
+      filters.costValues = [];
+    }
+    if (!filters.rarities) {
+      filters.rarities = [];
+    }
+    if (!filters.sets) {
+      filters.sets = [];
+    }
+    if (!filters.types) {
+      filters.types = [];
+    }
+
+    console.log(filters);
     props.filterFunction(filters);
   };
+
 
   return (
     <>
@@ -103,10 +128,6 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
         >
           {displayFilter ? "Hide filters" : "Show filters"}
         </button>
-
-        { Object.values(errors).map((err) => {
-          return <p>{err.message}</p>
-        }) }
       </div>
 
       <div
@@ -124,61 +145,61 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                 <input
                   type="checkbox"
                   value={0}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value0 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={1}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value1 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={2}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value2 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={3}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value3 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={4}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value4 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={5}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value5 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={6}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value6 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={7}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value7 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={8}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value8 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={9}
-                  {...register("cardCost")}
+                  {...register("costValues")}
                   className="checkbox-value9 checkbox-resource-cost"
                 />
               </div>
@@ -329,61 +350,61 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                 <input
                   type="checkbox"
                   value={0}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value0 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={1}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value1 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={2}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value2 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={3}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value3 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={4}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value4 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={5}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value5 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={6}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value6 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={7}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value7 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={8}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value8 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={9}
-                  {...register("cardAttack")}
+                  {...register("attackValues")}
                   className="checkbox-value9 checkbox-resource-cost"
                 />
               </div>
@@ -396,55 +417,55 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                 <input
                   type="checkbox"
                   value={1}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value1 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={2}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value2 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={3}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value3 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={4}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value4 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={5}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value5 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={6}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value6 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={7}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value7 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={8}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value8 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={9}
-                  {...register("cardHealth")}
+                  {...register("healthValues")}
                   className="checkbox-value9 checkbox-resource-cost"
                 />
               </div>
@@ -460,61 +481,61 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                 <input
                   type="checkbox"
                   value={0}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value0 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={1}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value1 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={2}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value2 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={3}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value3 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={4}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value4 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={5}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value5 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={6}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value6 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={7}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value7 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={8}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value8 checkbox-resource-cost"
                 />
                 <input
                   type="checkbox"
                   value={9}
-                  {...register("moraleCost")}
+                  {...register("moraleValues")}
                   className="checkbox-value9 checkbox-resource-cost"
                 />
               </div>
@@ -533,61 +554,61 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
             </div>
           </div>
 
-          {/* Rarity, Type, Set */}
+          {/* rarities, Type, Set */}
           <div className="flex align-start">
-            {/* Rarity */}
+            {/* rarities */}
             <div className="flex column category-filter">
-              <p>Rarity</p>
+              <p>rarities</p>
               <div className="flex column column-filter">
                 <div className="flex">
                   <input
                     type="checkbox"
-                    id="rarityCommon"
+                    id="raritiesCommon"
                     value={"Common"}
-                    {...register("rarity")}
+                    {...register("rarities")}
                     className="checkbox-resource-cost"
                   />
-                  <label htmlFor="rarityCommon">Common</label>
+                  <label htmlFor="raritiesCommon">Common</label>
                 </div>
                 <div className="flex">
                   <input
                     type="checkbox"
-                    id="rarityUncommon"
+                    id="raritiesUncommon"
                     value={"Uncommon"}
-                    {...register("rarity")}
+                    {...register("rarities")}
                     className="checkbox-resource-cost"
                   />
-                  <label htmlFor="rarityUncommon">Uncommon</label>
+                  <label htmlFor="raritiesUncommon">Uncommon</label>
                 </div>
                 <div className="flex">
                   <input
                     type="checkbox"
-                    id="rarityRare"
+                    id="raritiesRare"
                     value={"Rare"}
-                    {...register("rarity")}
+                    {...register("rarities")}
                     className="checkbox-resource-cost"
                   />
-                  <label htmlFor="rarityRare">Rare</label>
+                  <label htmlFor="raritiesRare">Rare</label>
                 </div>
                 <div className="flex">
                   <input
                     type="checkbox"
-                    id="rarityEpic"
+                    id="raritiesEpic"
                     value={"Epic"}
-                    {...register("rarity")}
+                    {...register("rarities")}
                     className="checkbox-resource-cost"
                   />
-                  <label htmlFor="rarityEpic">Epic</label>
+                  <label htmlFor="raritiesEpic">Epic</label>
                 </div>
                 <div className="flex">
                   <input
                     type="checkbox"
-                    id="rarityLegendary"
+                    id="raritiesLegendary"
                     value={"Legendary"}
-                    {...register("rarity")}
+                    {...register("rarities")}
                     className="checkbox-resource-cost"
                   />
-                  <label htmlFor="rarityLegendary">Legendary</label>
+                  <label htmlFor="raritiesLegendary">Legendary</label>
                 </div>
               </div>
             </div>
@@ -600,7 +621,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="typeCharacter"
                     value={"Character"}
-                    {...register("type")}
+                    {...register("types")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="typeCharacter">Character</label>
@@ -610,7 +631,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="typeAbility"
                     value={"Ability"}
-                    {...register("type")}
+                    {...register("types")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="typeAbility">Ability</label>
@@ -620,7 +641,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="typeLocation"
                     value={"Location"}
-                    {...register("type")}
+                    {...register("types")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="typeLocation">Location</label>
@@ -630,7 +651,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="typeArtifact"
                     value={"Artifact"}
-                    {...register("type")}
+                    {...register("types")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="typeArtifact">Artifact</label>
@@ -640,7 +661,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="typeMission"
                     value={"Mission"}
-                    {...register("type")}
+                    {...register("types")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="typeMission">Mission</label>
@@ -656,7 +677,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setCore2013"
                     value={"Core2013"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setCore2013">Core 2013</label>
@@ -666,7 +687,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setRise"
                     value={"Rise"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setRise">Rise</label>
@@ -676,7 +697,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setInfestation"
                     value={"Infestation"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setInfestation">Infestation</label>
@@ -686,7 +707,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setAscension"
                     value={"Ascension"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setAscension">Ascension</label>
@@ -696,7 +717,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setOrder"
                     value={"Order"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setOrder">Order</label>
@@ -706,7 +727,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setOppression"
                     value={"Oppression"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setOppression">Oppression</label>
@@ -716,7 +737,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setRebellion"
                     value={"Rebellion"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setRebellion">Rebellion</label>
@@ -726,7 +747,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
                     type="checkbox"
                     id="setIntrigue"
                     value={"Intrigue"}
-                    {...register("set")}
+                    {...register("sets")}
                     className="checkbox-resource-cost"
                   />
                   <label htmlFor="setIntrigue">Intrigue</label>
