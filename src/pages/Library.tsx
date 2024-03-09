@@ -90,6 +90,21 @@ export const Library = () => {
         filterValues.costValues.length > 0 ||
         filterValues.moraleValues.length > 0
       ) {
+        // filtering by stats 9 and over 9
+        if (filterValues.attackValues.includes("9") && card.attack! >= 9) {
+          return card;
+        }
+        if (filterValues.healthValues.includes("9") && card.health! >= 9) {
+          return card;
+        }
+        if (filterValues.moraleValues.includes("9") && card.moraleCost! >= 9) {
+          return card;
+        }
+        if (filterValues.costValues.includes("9") && card.resourceCost! >= 9) {
+          return card;
+        }
+
+        // filtering by stats 0 to 8
         if (filterValues.attackValues.includes(card.attack!.toString())) {
           return card;
         } else if (
@@ -111,20 +126,24 @@ export const Library = () => {
     });
 
     // filtering by purity
-    result = result.filter((card) => {
-      for (let i = 0; i < filterValues.purity.length; i++) {
-        if (
-          (filterValues.purity[i] != -1 &&
-          card.purity[i] == filterValues.purity[i]) ||
-          (
-            filterValues.purity[i] == 0 &&
-            card.purity[i] >= 0
-          )
-        ) {
-          return card;
+    const containsPurityFilter = (element: number) => element != -1;
+    if (filterValues.purity.some(containsPurityFilter)) {
+      result = result.filter((card) => {
+        for (let i = 0; i < filterValues.purity.length; i++) {
+          if (
+            (filterValues.purity[i] != -1 &&
+            card.purity[i] == filterValues.purity[i]) ||
+            (
+              filterValues.purity[i] == 0 &&
+              card.purity[i] >= 0
+            )
+          ) {
+            return card;
+          }
         }
-      }
-    });
+      });
+    }
+    
 
     setFilteredCardsList(result);
   };

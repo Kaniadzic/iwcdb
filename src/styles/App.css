@@ -325,6 +325,14 @@ body {
     background: linear-gradient(var(--red), var(--pink));
 }
 
-.container-purity > p {
+.purity-selected>p {
+    user-select: none;
+    text-shadow: 2px 2px 2px var(--black),
+        -2px -2px 2px var(--black),
+        2px -2px 2px var(--black),
+        -2px 2px 2px var(--black);
+}
+
+.container-purity>p {
     position: absolute;
 }
