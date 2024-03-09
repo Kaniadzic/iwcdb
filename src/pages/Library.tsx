@@ -41,9 +41,6 @@ export const Library = () => {
    * Aplying filter - setting filtered list (which is displayed) to new state with only cards described in filters
    */
   const filterCardsList = async (filterValues: CardsFilter) => {
-    console.log(filterValues);
-    console.log(filteredCardsList);
-
     // filtering by supertype
     let result = cardsList.filter((card) => {
       if (filterValues.superType == "All") {
@@ -95,18 +92,37 @@ export const Library = () => {
       ) {
         if (filterValues.attackValues.includes(card.attack!.toString())) {
           return card;
-        }
-        else if (filterValues.healthValues.includes(card.health!.toString())) {
+        } else if (
+          filterValues.healthValues.includes(card.health!.toString())
+        ) {
           return card;
-        }
-        else if (filterValues.moraleValues.includes(card.moraleCost!.toString())) {
+        } else if (
+          filterValues.moraleValues.includes(card.moraleCost!.toString())
+        ) {
           return card;
-        }
-        else if (filterValues.costValues.includes(card.resourceCost!.toString())) {
+        } else if (
+          filterValues.costValues.includes(card.resourceCost!.toString())
+        ) {
           return card;
         }
       } else {
         return card;
+      }
+    });
+
+    // filtering by purity
+    result = result.filter((card) => {
+      for (let i = 0; i < filterValues.purity.length; i++) {
+        if (
+          (filterValues.purity[i] != -1 &&
+          card.purity[i] == filterValues.purity[i]) ||
+          (
+            filterValues.purity[i] == 0 &&
+            card.purity[i] >= 0
+          )
+        ) {
+          return card;
+        }
       }
     });
 

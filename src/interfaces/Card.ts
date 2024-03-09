@@ -23,7 +23,7 @@ export interface Card {
 	id: string
     name: string,
 	artist: string,
-	purity: string[] | null,
+	purity: number[],
 	rarity: string,
     type: string,
 	superType: string,
