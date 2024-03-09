@@ -112,7 +112,6 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
       filters.types = [];
     }
 
-    console.log(filters);
     props.filterFunction(filters);
   };
 
