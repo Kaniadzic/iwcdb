@@ -301,7 +301,6 @@ body {
     width: 256px;
     height: 100%;
     font: inherit;
-    background: transparent;
     cursor: pointer;
     color: var(--navbar-silver);
     background: var(--black);
@@ -335,4 +334,16 @@ body {
 
 .container-purity>p {
     position: absolute;
+}
+
+/* Card search */
+.input-text {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    padding: 4px;
+    height: 100%;
+    color: var(--navbar-silver);
+    background: var(--black);
+    border: 0.15em solid var(--navbar-silver);
 }
