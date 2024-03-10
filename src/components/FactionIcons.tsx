@@ -61,9 +61,9 @@ export const Icon = (props: IconProps) => {
     }
   };
 
-  return <div>
+  return <>
     {
       getIcon()
     }
-  </div>;
+  </>;
 };

@@ -8,6 +8,7 @@ import { CardDisplay } from "../components/CardDisplay";
 import { LoadingIcon } from "../components/LoadingIcon";
 import { LibraryFilter } from "../components/LibraryFilter";
 import { CardsFilter } from "../interfaces/CardsFilter";
+import { string } from "yup";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
@@ -40,7 +41,9 @@ export const Library = () => {
   /**
    * Aplying filter - setting filtered list (which is displayed) to new state with only cards described in filters
    */
-  const filterCardsList = async (filterValues: CardsFilter) => {
+  const filterCardsList = (filterValues: CardsFilter) => {
+    console.log(filterValues);
+
     // filtering by supertype
     let result = cardsList.filter((card) => {
       if (filterValues.superType == "All") {
@@ -143,8 +146,16 @@ export const Library = () => {
         }
       });
     }
-    
 
+    // filtering by card name
+    if (filterValues.cardName.length > 0) {
+      result = result.filter((card) => {
+        if (card.name.toUpperCase().includes(filterValues.cardName.toUpperCase())) {
+          return card;
+        }
+      })
+    }
+    
     setFilteredCardsList(result);
   };
 
@@ -153,6 +164,22 @@ export const Library = () => {
    */
   const clearFilter = () => {
     setFilteredCardsList(cardsList);
+  };
+
+  /**
+   * Searching cards list by name and displaying matching cards
+   * @param cardName name of card to be displayed
+   */
+  const searchCardsList = (cardName: string) => {
+    console.log(cardName);
+
+    const result = cardsList.filter((card) => {
+      if (card.name.toUpperCase().includes(cardName.toUpperCase())) {
+        return card;
+      }
+    })
+
+    setFilteredCardsList(result);
   };
 
   /**

@@ -43,6 +43,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
    * Filter form validation schema
    */
   const filterSchema = yup.object().shape({
+    cardName: yup.string(),
     costValues: yup.mixed().nullable(),
     attackValues: yup.mixed().nullable(),
     healthValues: yup.mixed().nullable(),
@@ -88,7 +89,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
    * Handling form submit
    */
   const onCardsFilter = (data: any) => {
-    const filters: CardsFilter = {...data, purity: purityStates}
+    const filters: CardsFilter = { ...data, purity: purityStates };
 
     if (!filters.attackValues) {
       filters.attackValues = [];
@@ -114,7 +115,6 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
 
     props.filterFunction(filters);
   };
-
 
   return (
     <>
@@ -754,6 +754,17 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
               </div>
             </div>
           </div>
+
+          {/* Card name */}
+          <div className="flex column">
+            <p>Search card by name</p>
+            <input
+              type="text"
+              className="input-text"
+              {...register("cardName")}
+            />
+          </div>
+
         </form>
 
         <div className="flex">
