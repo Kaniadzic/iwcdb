@@ -60,3 +60,21 @@
     width: 64px;
     height: 64px;
 }
+
+/* RWD */
+@media only screen and (max-width: 520px) {
+    .card-display-container {
+        width: 100vw;
+        flex-direction: column;
+    }
+
+    .card-display-left {
+        display: none;
+    }
+
+    .card-display-right {
+        width: 95%;
+        font-size: 24px;
+    }
+}
+

@@ -60,17 +60,6 @@ body {
     box-shadow: 0 0 4px 4px var(--navbar-silver);
 }
 
-/* RWD */
-@media only screen and (max-width: 520px) {
-    .container-library {
-        width: 100vw !important;
-    }
-
-    .image-card {
-        max-width: 90vw !important;
-    }
-}
-
 /* Library */
 .container-library {
     position: absolute;
@@ -148,7 +137,7 @@ body {
 }
 
 .button-display-filters {
-    min-width: 512px;
+    width: 512px;
 }
 
 .container-filters {
@@ -337,6 +326,17 @@ body {
 }
 
 /* Card search */
+.container-search {
+    width: 100%;
+    margin: 32px 0 22px 0;
+    padding: 16px 0 0 0;
+    border-top: 1px solid var(--navbar-silver);
+}
+
+.container-search > p {
+    margin: 0 0 8px 0;
+}
+
 .input-text {
     font-weight: 400;
     font-style: normal;
@@ -347,3 +347,58 @@ body {
     background: var(--black);
     border: 0.15em solid var(--navbar-silver);
 }
+
+/* RWD */
+@media only screen and (max-width: 520px) {
+    .container-library {
+        width: 100vw;
+        position: relative;
+        margin-top: 0;
+    }
+
+    .container-navbar {
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    .container-navbar > a {
+        width: 164px;
+        margin: 6px 0;
+    }
+
+    .image-card {
+        max-width: 90vw;
+    }
+
+    .button-display-filters {
+        width: 90vw;
+    }
+
+    .container-filters > form > div {
+        flex-direction: column;
+    }
+
+    .input-text {
+        width: 90vw;
+    }
+
+    .row-filter {
+        height: 128px;
+        flex-wrap: wrap;
+        width: 300px;
+        min-width: 300px;
+    }
+
+    .container-purity {
+        height: 50%;
+    }
+
+    .select-row-filter {
+        min-width: 300px;
+    }
+
+    .background-blur {
+        width: 100vw;
+    }
+}
+

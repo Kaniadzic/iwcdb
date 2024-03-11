@@ -553,7 +553,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
             </div>
           </div>
 
-          {/* rarities, Type, Set */}
+          {/* Rarities, Type, Set */}
           <div className="flex align-start">
             {/* rarities */}
             <div className="flex column category-filter">
@@ -755,8 +755,8 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
             </div>
           </div>
 
-          {/* Card name */}
-          <div className="flex column">
+          {/* Search by card name */}
+          <div className="flex column container-search">
             <p>Search card by name</p>
             <input
               type="text"
@@ -764,7 +764,6 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
               {...register("cardName")}
             />
           </div>
-
         </form>
 
         <div className="flex">
@@ -777,7 +776,7 @@ export const LibraryFilter = (props: LibraryFilterProps) => {
             Clear
           </button>
           <button className="button-main" onClick={handleSubmit(onCardsFilter)}>
-            Apply Filter
+            Apply
           </button>
         </div>
       </div>
