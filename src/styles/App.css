@@ -396,5 +396,9 @@ body {
     .select-row-filter {
         min-width: 300px;
     }
+
+    .background-blur {
+        width: 100vw;
+    }
 }
 
