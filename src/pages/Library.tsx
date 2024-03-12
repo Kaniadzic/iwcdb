@@ -9,6 +9,7 @@ import { LoadingIcon } from "../components/LoadingIcon";
 import { LibraryFilter } from "../components/LibraryFilter";
 import { CardsFilter } from "../interfaces/CardsFilter";
 import { string } from "yup";
+import { Footer } from "../components/Footer";
 
 export const Library = () => {
   const [cardsList, setCardsList] = useState<ICard[]>([]);
@@ -220,8 +221,9 @@ export const Library = () => {
           filterFunction={filterCardsList}
           clearFunction={clearFilter}
         />
+
         <p className="text-cards-quantity">
-          Displaying {filteredCardsList.length} cards
+          Displaying {filteredCardsList.length} { filteredCardsList.length == 1 ? "card" : "cards" }
         </p>
 
         {/* Displaying icon on loading */}
@@ -233,6 +235,8 @@ export const Library = () => {
             return <Card cardData={card} clickFunction={handleCardClick} />;
           })}
         </div>
+
+        <Footer />
       </div>
     </>
   );

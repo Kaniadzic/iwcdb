@@ -41,13 +41,13 @@ export const Icon = (props: IconProps) => {
         return <img src="/icons/Verore.png" className="card-purity-icon" />;
         break;
       case 2:
-        return <img src="/icons/Warpath.png" className="card-purity-icon" />;
+        return <img src="/icons/DoD.png" className="card-purity-icon" />;
         break;
       case 3:
-        return <img src="/icons/Genesis.png" className="card-purity-icon" />;
+        return <img src="/icons/Warpath.png" className="card-purity-icon" />;
         break;
       case 4:
-        return <img src="/icons/DoD.png" className="card-purity-icon" />;
+        return <img src="/icons/Genesis.png" className="card-purity-icon" />;
         break;
       case 5:
         return <img src="/icons/Sleepers.png" className="card-purity-icon" />;

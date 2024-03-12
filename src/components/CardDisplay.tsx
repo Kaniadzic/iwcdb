@@ -2,22 +2,22 @@ import { CardDisplayProps } from "../interfaces/CardDisplayProps";
 import { FactionIcons } from "./FactionIcons";
 
 /**
- * 
- * @param subTypesArray 
- * @returns 
+ *
+ * @param subTypesArray
+ * @returns
  */
 const formatSubTypes = (subTypesArray: string[] | null | undefined): string => {
-    let subtypes = "";
+  let subtypes = "";
 
-    /**
-     * Formatting subTypes array to string
-     */
-    subTypesArray?.forEach((subtype) => {
-        subtypes += `${subtype} `;
-    });
+  /**
+   * Formatting subTypes array to string
+   */
+  subTypesArray?.forEach((subtype) => {
+    subtypes += `${subtype} `;
+  });
 
-    return subtypes;
-}
+  return subtypes;
+};
 
 export const CardDisplay = (props: CardDisplayProps) => {
   return (
@@ -28,11 +28,19 @@ export const CardDisplay = (props: CardDisplayProps) => {
 
       <div className="flex column card-display-right">
         <div className="flex card-display-top">
-            <button className="button-close-display" onClick={() => {props.clickFunction()}}>✕</button>
+          <button
+            className="button-close-display"
+            onClick={() => {
+              props.clickFunction();
+            }}
+          >
+            ✕
+          </button>
         </div>
         <h2>{props.cardData?.name}</h2>
         <h4>
-          {props.cardData?.superType} {props.cardData?.type} -{" "}
+          {props.cardData?.superType} {props.cardData?.type}
+          {props.cardData?.type == "Character" && " - "}
           {formatSubTypes(props.cardData?.subTypes)}
         </h4>
 
@@ -51,7 +59,9 @@ export const CardDisplay = (props: CardDisplayProps) => {
           </>
         )}
 
-        <p>— Card: {props.cardData?.setNumber} of {props.cardData?.setName} set </p>
+        <p>
+          — Card: {props.cardData?.setNumber} of {props.cardData?.setName} set{" "}
+        </p>
       </div>
     </div>
   );
