@@ -75,6 +75,7 @@ body {
 
 .display-cards {
     flex-wrap: wrap;
+    min-height: 50vh;
 }
 
 .background-blur {
@@ -402,3 +403,27 @@ body {
     }
 }
 
+@media only screen and (max-width: 1600px) {
+    .container-filters > form > div {
+        flex-direction: column;
+    }
+}
+
+/* Footer */
+.container-footer {
+    border-top: 2px solid var(--navbar-grey);
+    color: var(--navbar-grey);
+    font-size: 1.5rem;
+    width: 100%;
+    min-height: 92px;
+    height: 15vh;
+    margin: 16px 0 0 0;
+}
+
+.container-footer > h2 {
+    font-size: 1.7rem;
+}
+
+.link-footer {
+    color: var(--blue);
+}

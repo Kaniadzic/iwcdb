@@ -3,6 +3,11 @@
     max-width: 290px;
     margin: 16px;
     cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.image-card:hover {
+    transform: scale(1.05);
 }
 
 /* Styles of single card on click display */
